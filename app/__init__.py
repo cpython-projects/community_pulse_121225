@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 
 from flask import Flask
 from config import DevelopmentConfig, Config, TestConfig
@@ -8,13 +7,6 @@ from app.routers.responses import responses_bp
 
 from app.models import db, Migrate
 
-
-
-
-
-
-print(os.environ.get('FLASK_DEBUG'))
-print(os.environ.get('FLASK_ENV'))
 
 def create_app():
     app = Flask(__name__)
@@ -30,7 +22,7 @@ def create_app():
 
     db.init_app(app)
 
-    migrate = Migrate()  # new
+    migrate = Migrate()
     migrate.init_app(app, db)
 
     app.register_blueprint(questions_bp, url_prefix='/questions')
